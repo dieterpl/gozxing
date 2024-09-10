@@ -3,7 +3,7 @@ package oned
 import (
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
+	"github.com/dieterpl/gozxing"
 )
 
 func TestUPCAWriter(t *testing.T) {

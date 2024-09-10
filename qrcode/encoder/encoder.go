@@ -9,10 +9,10 @@ import (
 	textencoding "golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/common"
-	"github.com/makiuchi-d/gozxing/common/reedsolomon"
-	"github.com/makiuchi-d/gozxing/qrcode/decoder"
+	"github.com/dieterpl/gozxing"
+	"github.com/dieterpl/gozxing/common"
+	"github.com/dieterpl/gozxing/common/reedsolomon"
+	"github.com/dieterpl/gozxing/qrcode/decoder"
 )
 
 var (
@@ -513,7 +513,8 @@ func appendLengthInfo(numLetters int, version *decoder.Version, mode *decoder.Mo
 }
 
 // appendBytes Append "bytes" in "mode" mode (encoding) into "bits".
-//  On success, store the result in "bits".
+//
+//	On success, store the result in "bits".
 func appendBytes(content string, mode *decoder.Mode, bits *gozxing.BitArray, encoding textencoding.Encoding) gozxing.WriterException {
 	switch mode {
 	case decoder.Mode_NUMERIC:

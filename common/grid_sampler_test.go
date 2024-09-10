@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/common"
-	"github.com/makiuchi-d/gozxing/testutil"
+	"github.com/dieterpl/gozxing"
+	"github.com/dieterpl/gozxing/common"
+	"github.com/dieterpl/gozxing/testutil"
 )
 
 func TestGridSampler_GetSetInstance(t *testing.T) {

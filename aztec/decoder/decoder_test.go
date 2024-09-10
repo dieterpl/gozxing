@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/aztec/detector"
-	"github.com/makiuchi-d/gozxing/testutil"
+	"github.com/dieterpl/gozxing"
+	"github.com/dieterpl/gozxing/aztec/detector"
+	"github.com/dieterpl/gozxing/testutil"
 )
 
 func TestDecoder_Decode(t *testing.T) {

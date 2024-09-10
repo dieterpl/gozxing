@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/makiuchi-d/gozxing"
+	"github.com/dieterpl/gozxing"
 )
 
 type DefaultGridSampler struct{}
