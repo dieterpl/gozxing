@@ -79,6 +79,11 @@ const (
 	 *  when prepending to the barcode content.
 	 */
 	ResultMetadataType_SYMBOLOGY_IDENTIFIER
+
+	/**
+	 * Variance
+	 */
+	ResultMetadataType_VARIANCE
 )
 
 func (t ResultMetadataType) String() string {

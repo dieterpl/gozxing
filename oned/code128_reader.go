@@ -150,7 +150,7 @@ func NewCode128Reader() gozxing.Reader {
 	return this
 }
 
-func code128FindStartPattern(row *gozxing.BitArray) ([]int, error) {
+func code128FindStartPattern(row *gozxing.BitArray) ([]int, float64, error) {
 	width := row.GetSize()
 	rowOffset := row.GetNextSet(0)
 
@@ -178,7 +178,7 @@ func code128FindStartPattern(row *gozxing.BitArray) ([]int, error) {
 				// Look for whitespace before start pattern, >= 50% of width of start pattern
 				if bestMatch >= 0 {
 					if b, _ := row.IsRange(max(0, patternStart-(i-patternStart)/2), patternStart, false); b {
-						return []int{patternStart, i, bestMatch}, nil
+						return []int{patternStart, i, bestMatch}, bestVariance, nil
 					}
 				}
 				patternStart += counters[0] + counters[1]
@@ -193,7 +193,7 @@ func code128FindStartPattern(row *gozxing.BitArray) ([]int, error) {
 			isWhite = !isWhite
 		}
 	}
-	return nil, gozxing.NewNotFoundException()
+	return nil, -1, gozxing.NewNotFoundException()
 }
 
 func code128DecodeCode(row *gozxing.BitArray, counters []int, rowOffset int) (int, error) {
@@ -225,7 +225,7 @@ func (*code128Reader) DecodeRow(rowNumber int, row *gozxing.BitArray, hints map[
 
 	symbologyModifier := 0
 
-	startPatternInfo, e := code128FindStartPattern(row)
+	startPatternInfo, variance, e := code128FindStartPattern(row)
 	if e != nil {
 		return nil, e
 	}
@@ -547,5 +547,6 @@ func (*code128Reader) DecodeRow(rowNumber int, row *gozxing.BitArray, hints map[
 			gozxing.NewResultPoint(right, rowNumberf)},
 		gozxing.BarcodeFormat_CODE_128)
 	resultObject.PutMetadata(gozxing.ResultMetadataType_SYMBOLOGY_IDENTIFIER, "]C"+strconv.Itoa(symbologyModifier))
+	resultObject.PutMetadata(gozxing.ResultMetadataType_VARIANCE, variance)
 	return resultObject, nil
 }

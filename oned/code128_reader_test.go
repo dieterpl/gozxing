@@ -11,14 +11,14 @@ import (
 
 func TestCode128FindStartPattern(t *testing.T) {
 	row := testutil.NewBitArrayFromString("00010000000110100100100100")
-	_, e := code128FindStartPattern(row)
+	_, _, e := code128FindStartPattern(row)
 	if _, ok := e.(gozxing.NotFoundException); !ok {
 		t.Fatalf("code128FindStartPattern must be NotFoundException, %T", e)
 	}
 
 	// Start Code A
 	row = testutil.NewBitArrayFromString("00010000011010000100100100100")
-	r, e := code128FindStartPattern(row)
+	r, _, e := code128FindStartPattern(row)
 	if e != nil {
 		t.Fatalf("code128FindStartPattern returns error: %v", e)
 	}
@@ -34,7 +34,7 @@ func TestCode128FindStartPattern(t *testing.T) {
 
 	// Start Code B
 	row = testutil.NewBitArrayFromString("0010000000000011110011000011000000001100111001111")
-	r, e = code128FindStartPattern(row)
+	r, _, e = code128FindStartPattern(row)
 	if e != nil {
 		t.Fatalf("code128FindStartPattern returns error: %v", e)
 	}
@@ -50,7 +50,7 @@ func TestCode128FindStartPattern(t *testing.T) {
 
 	// Start Code C
 	row = testutil.NewBitArrayFromString("011010011100100")
-	r, e = code128FindStartPattern(row)
+	r, _, e = code128FindStartPattern(row)
 	if e != nil {
 		t.Fatalf("code128FindStartPattern returns error: %v", e)
 	}
